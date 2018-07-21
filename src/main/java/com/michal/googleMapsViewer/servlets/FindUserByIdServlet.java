@@ -1,11 +1,15 @@
 package com.michal.googleMapsViewer.servlets;
 
 
+import com.michal.googleMapsViewer.cdiBeans.MaxPulse;
+import com.michal.googleMapsViewer.cdiBeans.MaxPulseBean;
 import com.michal.googleMapsViewer.dao.UsersRepositoryDao;
 import com.michal.googleMapsViewer.dao.UsersRepositoryDaoBean;
+import com.michal.googleMapsViewer.domain.Gender;
 import com.michal.googleMapsViewer.domain.User;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +24,9 @@ public class FindUserByIdServlet extends HttpServlet {
 
     @EJB
     private UsersRepositoryDao usersRepositoryDao = new UsersRepositoryDaoBean();
+
+    @Inject
+    MaxPulse maxPulse = new MaxPulseBean();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,7 +44,15 @@ public class FindUserByIdServlet extends HttpServlet {
             return;
         }
 
+        if (user.getGender().equals(Gender.MAN)) {
+            printOut(resp, user, maxPulse.calculateMaxPulseForMen(user.getAge()));
+        } else {
+            printOut(resp, user, maxPulse.calculateMaxPulseForWomen(user.getAge()));
+        }
+    }
+
+    private void printOut(HttpServletResponse resp, User user, double maxPulse) throws IOException {
         PrintWriter writer = resp.getWriter();
-        writer.println("<!DOCTYPE html><html><body>" + user.toString() + "</body></html>");
+        writer.println("<!DOCTYPE html><html><body>" + user.toString() + "<br>" + "Max pulse: " + maxPulse + "</body></html>");
     }
 }

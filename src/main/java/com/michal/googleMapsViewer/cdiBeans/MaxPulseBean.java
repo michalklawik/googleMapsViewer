@@ -1,5 +1,8 @@
 package com.michal.googleMapsViewer.cdiBeans;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class MaxPulseBean implements MaxPulse {
     @Override
     public double calculateMaxPulseForMen(int age) {
