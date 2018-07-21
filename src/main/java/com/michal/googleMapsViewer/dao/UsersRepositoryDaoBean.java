@@ -3,10 +3,14 @@ package com.michal.googleMapsViewer.dao;
 import com.michal.googleMapsViewer.domain.User;
 import com.michal.googleMapsViewer.repository.UsersRepository;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateless
 public class UsersRepositoryDaoBean implements UsersRepositoryDao {
 
+    @EJB
     UsersRepository usersRepository = new UsersRepository();
 
     @Override

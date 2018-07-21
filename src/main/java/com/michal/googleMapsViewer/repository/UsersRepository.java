@@ -1,18 +1,21 @@
 package com.michal.googleMapsViewer.repository;
 
+import com.michal.googleMapsViewer.domain.Gender;
 import com.michal.googleMapsViewer.domain.User;
 
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 
+@Stateless
 public class UsersRepository {
     List<User> users = new ArrayList<>();
 
     public UsersRepository() {
-        users.add(new User(1, "Marta", "Zajac", "marzaj", 25));
-        users.add(new User(2, "Adam", "Nowak", "adanow", 30));
-        users.add(new User(3, "Jacek", "Placek", "jacpla", 26));
-        users.add(new User(4, "Jan", "Kowalski", "jankow", 19));
+        users.add(new User(1, "Marta", "Zajac", "marzaj", 25, Gender.WOMAN));
+        users.add(new User(2, "Adam", "Nowak", "adanow", 30, Gender.MAN));
+        users.add(new User(3, "Jacek", "Placek", "jacpla", 26, Gender.MAN));
+        users.add(new User(4, "Jan", "Kowalski", "jankow", 19, Gender.MAN));
     }
 
     public void addUser(User user) {
