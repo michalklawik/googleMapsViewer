@@ -27,7 +27,7 @@ public class UsersRepository {
     }
 
     public User getUserByLogin(String login) {
-        return users.stream().filter(u -> u.getLogin() == login).findFirst().get();
+        return users.stream().filter(u -> u.getLogin().equals(login)).findFirst().get();
     }
 
     public List<User> getUsersList() {
