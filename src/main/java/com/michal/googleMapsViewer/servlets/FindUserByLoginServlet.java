@@ -19,7 +19,7 @@ import java.io.PrintWriter;
 import java.util.NoSuchElementException;
 
 @WebServlet("/find-user-by-login")
-public class FindUserByLogin extends HttpServlet {
+public class FindUserByLoginServlet extends HttpServlet {
 
     @EJB
     UsersRepositoryDao usersRepositoryDao = new UsersRepositoryDaoBean();
